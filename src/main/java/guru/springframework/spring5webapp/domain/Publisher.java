@@ -12,16 +12,20 @@ public class Publisher {
     private Long id;
 
     private String name;
-    private String address;
+    private String addressLine1;
+    private String city;
+    private String state;
+    private String zip;
 
-    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
     private Set<Book> books = new HashSet<>();
 
     public Publisher(){}
 
     public Publisher(String name, String address) {
         this.name = name;
-        this.address = address;
+        this.addressLine1 = address;
     }
 
     public Set<Book> getBooks() {
@@ -49,11 +53,35 @@ public class Publisher {
     }
 
     public String getAddress() {
-        return address;
+        return addressLine1;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     @Override
@@ -75,7 +103,7 @@ public class Publisher {
     public String toString() {
         return "Publisher{" +
                 "name='" + name + '\'' +
-                ", address='" + address + '\'' +
+                ", address='" + addressLine1 + '\'' +
                 ", id=" + id +
                 '}';
     }
