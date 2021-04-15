@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Publisher {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,22 +18,22 @@ public class Publisher {
     private String zip;
 
     @OneToMany
-    @JoinColumn(name = "publisher_id")
-    private Set<Book> books = new HashSet<>();
+    @JoinColumn(name ="document_id")
+    private Set<Document> documents = new HashSet<>();
 
-    public Publisher(){}
+    public Department(){}
 
-    public Publisher(String name, String address) {
+    public Department(String name, String address) {
         this.name = name;
         this.addressLine1 = address;
     }
 
-    public Set<Book> getBooks() {
-        return books;
+    public Set<Document> getDocuments() {
+        return documents;
     }
 
-    public void setBooks(Set<Book> books) {
-        this.books = books;
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
     }
 
     public void setId(Long id) {
@@ -89,9 +89,9 @@ public class Publisher {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Publisher publisher = (Publisher) o;
+        Department department = (Department) o;
 
-        return id != null ? id.equals(publisher.id) : publisher.id == null;
+        return id != null ? id.equals(department.id) : department.id == null;
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Book {
+public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,24 +14,24 @@ public class Book {
     private String isbn;
 
     @ManyToOne
-    private Publisher publisher;
+    private Department department;
 
     @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @JoinTable(name = "author_document", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
 
-    public Publisher getPublisher() {
-        return publisher;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
-    public Book() {
+    public Document() {
     }
 
-    public Book(String title, String isbn) {
+    public Document(String title, String isbn) {
         this.title = title;
         this.isbn = isbn;
     }
@@ -73,7 +73,7 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Book book = (Book) o;
+        Document book = (Document) o;
 
         return id != null ? id.equals(book.id) : book.id == null;
     }
