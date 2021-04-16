@@ -10,6 +10,7 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
     private String isbn;
 
@@ -17,8 +18,8 @@ public class Document {
     private Department department;
 
     @ManyToMany
-    @JoinTable(name = "author_document", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private Set<Author> authors = new HashSet<>();
+    @JoinTable(name = "user_document", joinColumns = @JoinColumn(name = "document_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users = new HashSet<>();
 
     public Department getDepartment() {
         return department;
@@ -60,12 +61,12 @@ public class Document {
         this.isbn = isbn;
     }
 
-    public Set<Author> getAuthors() {
-        return authors;
+    public Set<User> getAuthors() {
+        return users;
     }
 
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
+    public void setAuthors(Set<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -89,7 +90,6 @@ public class Document {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
-                ", authors=" + authors +
                 '}';
     }
 }

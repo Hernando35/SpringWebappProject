@@ -5,20 +5,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Author {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String firstName;
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "users")
     private Set<Document> documents = new HashSet<>();
 
-    public Author(){}
+    public User(){}
 
-    public Author(String firstName, String lastName) {
+    public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -60,9 +61,9 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Author author = (Author) o;
+        User user = (User) o;
 
-        return id != null ? id.equals(author.id) : author.id == null;
+        return id != null ? id.equals(user.id) : user.id == null;
     }
 
     @Override
@@ -72,11 +73,10 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", books=" + documents +
                 '}';
     }
 }
